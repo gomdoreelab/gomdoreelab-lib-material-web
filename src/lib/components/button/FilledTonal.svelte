@@ -1,5 +1,5 @@
 <script>
-	import '@material/web/button/elevated-button.js';
+	import '@material/web/button/filled-tonal-button.js';
 
 	let button;
 	let {
@@ -23,23 +23,23 @@
 
 	$effect(() => {
 		if (containerColor) {
-			button.style.setProperty('--md-elevated-button-container-color', containerColor);
+			button.style.setProperty('--md-filled-tonal-button-container-color', containerColor);
 		}
 		if (containerShape) {
-			button.style.setProperty('--md-elevated-button-container-shape', containerShape);
+			button.style.setProperty('--md-filled-tonal-button-container-shape', containerShape);
 		}
 		if (textColor) {
-			button.style.setProperty('--md-elevated-button-label-text-color', textColor);
+			button.style.setProperty('--md-filled-tonal-button-label-text-color', textColor);
 		}
 		if (textFont) {
-			button.style.setProperty('--md-elevated-button-label-text-font', textFont);
+			button.style.setProperty('--md-filled-tonal-button-label-text-font', textFont);
 		}
 	});
 </script>
 
 <!-- svelte-ignore a11y_click_events_have_key_events -->
 <!-- svelte-ignore a11y_no_static_element_interactions -->
-<md-elevated-button
+<md-filled-tonal-button
 	bind:this={button}
 	aria-label={ariaLabel}
 	{disabled}
@@ -54,4 +54,4 @@
 	{onclick}
 >
 	{text}
-</md-elevated-button>
+</md-filled-tonal-button>
