@@ -3,18 +3,22 @@
 
 	let checkbox;
 	let {
+		// Accessibility
 		ariaLabel = '',
 		label = '',
 		touchTarget = 'wrapper',
+		// Tokens
 		outlineColor = '',
 		selectedContainerColor = '',
 		selectedIconColor = '',
 		containerShape = '',
+		// Properties
 		state = 'checked',
 		required = false,
 		value = 'on',
 		disabled = false,
 		name = '',
+		// Events
 		onchange,
 		oninput
 	} = $props();

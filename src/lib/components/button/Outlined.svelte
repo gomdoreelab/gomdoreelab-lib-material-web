@@ -3,12 +3,14 @@
 
 	let button;
 	let {
+		// Accessibility
 		ariaLabel = '',
-		text = '',
+		// Tokens
 		containerColor = '',
 		containerShape = '',
 		textColor = '',
 		textFont = '',
+		// Properties
 		disabled = false,
 		softDisabled = false,
 		href = '',
@@ -18,7 +20,13 @@
 		type = 'button',
 		value = '',
 		name = '',
-		onclick
+		// Events
+		onclick,
+		// Slots
+		slotLabel,
+		slotIcon,
+		// And others..
+		id = ''
 	} = $props();
 
 	$effect(() => {
@@ -52,6 +60,8 @@
 	{value}
 	{name}
 	{onclick}
+	{id}
 >
-	{text}
+	{@render slotLabel?.()}
+	{@render slotIcon?.()}
 </md-outlined-button>
