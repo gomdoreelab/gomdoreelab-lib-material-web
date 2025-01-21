@@ -11,6 +11,7 @@
 		MenuItem,
 		SubMenu
 	} from '$lib/index.js';
+	import { Compact, TopSmallAppBar } from 'gomdoreelab-lib-grid-web';
 
 	let isOpenDialog = false;
 	let isOpenMenu = false;
@@ -100,3 +101,15 @@
 		{/snippet}
 	</Menu>
 </span>
+<Compact>
+	{#snippet slotHeader()}
+		<TopSmallAppBar>
+			{#snippet slotHeadline()}
+				안뇽!
+			{/snippet}
+		</TopSmallAppBar>
+	{/snippet}
+	{#snippet slotBody()}
+		hello
+	{/snippet}
+</Compact>

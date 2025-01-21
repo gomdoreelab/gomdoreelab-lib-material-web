@@ -1,6 +1,7 @@
 {
 	"name": "gomdoreelab-lib-material-web",
-	"version": "0.0.1",
+	"version": "0.1.0",
+	"license": "MIT",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run package",
@@ -52,6 +53,7 @@
 		"vite": "^5.4.11"
 	},
 	"dependencies": {
-		"@material/web": "^2.2.0"
+		"@material/web": "^2.2.0",
+		"gomdoreelab-lib-grid-web": "^0.1.2"
 	}
 }

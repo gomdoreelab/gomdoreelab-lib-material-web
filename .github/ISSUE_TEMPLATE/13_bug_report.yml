@@ -1,0 +1,60 @@
+name: "버그 리포트"
+description: 문제점 보고하기
+title: "[버그] "
+labels: ["Bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        버그 리포트를 작성해 주셔서 감사합니다!
+  - type: textarea
+    id: bug-description
+    attributes:
+      label: 버그 설명
+      description: 발생한 버그에 대해 명확하고 간결하게 설명해 주세요. 이 문제에 대한 PR을 제출할 계획이라면 설명에 함께 언급해 주세요.
+      placeholder: 버그 설명을 여기에 작성해 주세요.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: 재현 방법
+      description: '문제를 재현할 수 있는 저장소 링크나 REPL을 제공해 주세요. 보고 내용이 모호하거나(예: 일반적인 오류 메시지만 있는 경우) 재현 방법이 없으면 "재현 필요" 라벨이 붙게 됩니다. 합리적인 시간 내에 재현 방법이 제공되지 않으면 이슈가 닫힐 수 있습니다.'
+      placeholder: 재현 방법을 여기에 작성해 주세요.
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: 로그
+      description: "버그가 발생한 시점의 브라우저 콘솔 로그와 서버 로그를 포함해 주세요. 재현 방법을 제공한 경우 선택사항입니다. 가능하면 이미지 대신 로그 텍스트를 복사하여 붙여넣어 주세요."
+      render: shell
+  - type: textarea
+    id: system-info
+    attributes:
+      label: 시스템 정보
+      description: 버그가 재현되는 시스템 환경을 알려주세요.
+      render: shell
+      placeholder: 운영 체제, 사용 중인 프로그램 버전, 브라우저 등
+    validations:
+      required: true
+  - type: dropdown
+    id: severity
+    attributes:
+      label: 심각도
+      description: 이 문제의 심각도를 선택해 주세요.
+      options:
+        - 경미한 불편
+        - 업그레이드 불가
+        - 사용 완전 불가
+    validations:
+      required: true
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: 확인 사항
+      options:
+        - label: 이 버그가 이미 보고되지 않았는지 확인했습니다.
+          required: true
+        - label: 제공한 정보가 정확하고 최신임을 확인했습니다.
+          required: true

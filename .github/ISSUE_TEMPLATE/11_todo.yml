@@ -1,0 +1,65 @@
+name: "TO-DO"
+description: 해야 할 작업을 기록하는 템플릿
+title: "[TO-DO] "
+labels: ["TO-DO"]
+assignees:
+  - gomdoreelab
+body:
+  - type: markdown
+    attributes:
+      value: |
+        "TO-DO 항목을 작성해 주셔서 감사합니다. 아래 양식을 채워주세요."
+  - type: textarea
+    id: task-description
+    attributes:
+      label: 작업 설명
+      description: 해야 할 작업에 대해 간단히 설명해주세요.
+      placeholder: 작업에 대한 설명을 여기에 적어주세요.
+    validations:
+      required: true
+  - type: textarea
+    id: subtasks
+    attributes:
+      label: 세부 작업 목록
+      description: 해야 할 세부 작업들을 나열해주세요.
+      value: |
+        - 작업 1
+        - 작업 2
+        - 작업 3
+    validations:
+      required: true
+  - type: textarea
+    id: additional-info
+    attributes:
+      label: 추가 정보
+      description: 작업에 필요한 추가 정보나 참고 사항을 적어주세요.
+      placeholder: 추가 정보를 여기에 적어주세요.
+  - type: input
+    id: due-date
+    attributes:
+      label: 완료 예정일
+      description: 작업 완료 예정일을 적어주세요.
+      placeholder: "예: 2025-01-27"
+    validations:
+      required: false
+  - type: dropdown
+    id: priority
+    attributes:
+      label: 우선순위
+      description: 이 작업의 우선순위를 선택해주세요.
+      options:
+        - 높음
+        - 중간
+        - 낮음
+    validations:
+      required: true
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: 확인 사항
+      description: 아래 사항을 확인해주세요.
+      options:
+        - label: "이 TO-DO 항목이 중복되지 않음을 확인했습니다."
+          required: true
+        - label: 필요한 모든 정보를 제공했습니다.
+          required: true
