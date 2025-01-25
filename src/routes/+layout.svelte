@@ -2,7 +2,7 @@
 	let { children } = $props();
 </script>
 
-<div class="dark-high-contrast">
+<div>
 	{@render children?.()}
 </div>
 

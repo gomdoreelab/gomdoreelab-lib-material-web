@@ -78,3 +78,6 @@ export { default as SecondaryTab } from './components/tab/Secondary.svelte';
 // Text-Field
 export { default as FilledTextField } from './components/text-field/Filled.svelte';
 export { default as OutlinedTextField } from './components/text-field/Outlined.svelte';
+
+// Custom Top AppBar
+export { default as TopSmallAppBar } from './components/app-bar/top/Small.svelte';

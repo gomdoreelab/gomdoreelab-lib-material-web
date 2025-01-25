@@ -9,9 +9,10 @@
 		ListItem,
 		Menu,
 		MenuItem,
-		SubMenu
+		SubMenu,
+		TopSmallAppBar
 	} from '$lib/index.js';
-	import { Compact, TopSmallAppBar } from 'gomdoreelab-lib-grid-web';
+	import { Compact } from 'gomdoreelab-lib-grid-web';
 
 	let isOpenDialog = false;
 	let isOpenMenu = false;
