@@ -1,3 +1,5 @@
+<!-- <svelte:options customElement="doree-af" /> -->
+
 <script>
 	import '@material/web/button/elevated-button.js';
 
@@ -47,7 +49,8 @@
 
 <!-- svelte-ignore a11y_click_events_have_key_events -->
 <!-- svelte-ignore a11y_no_static_element_interactions -->
-<md-elevated-button
+<svelte:element
+	this={'md-elevated-button'}
 	bind:this={button}
 	aria-label={ariaLabel}
 	{disabled}
@@ -64,4 +67,4 @@
 >
 	{@render slotLabel?.()}
 	{@render slotIcon?.()}
-</md-elevated-button>
+</svelte:element>
