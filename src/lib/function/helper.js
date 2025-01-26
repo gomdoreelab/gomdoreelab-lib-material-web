@@ -4,7 +4,6 @@ import { getColorFromImage } from 'mdui/functions/getColorFromImage.js';
 import { setColorScheme } from 'mdui/functions/setColorScheme.js';
 import { removeColorScheme } from 'mdui/functions/removeColorScheme.js';
 import { observeResize } from 'mdui/functions/observeResize.js';
-import { breakpoint } from 'mdui/functions/breakpoint.js';
 
 /**
  *
@@ -195,65 +194,60 @@ export function getResizeObserver(element, callback) {
 	return observeResize(element, callback);
 }
 
-/**
- *
- * 디자인 패턴에 따른 화면 분기점 조건과 일치하는지 확인
- *
- * @returns {breakpointCondition}
- *
- * @example
- * const breakpointCondition = getBreakpoint();
- *
- * type Breakpoint: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl'
- *
- * // Check if the current page breakpoint is greater than 'sm'
- * breakpointCondition.up('sm');
- *
- * // Check if the current page breakpoint is less than 'lg'
- * breakpointCondition.down('lg');
- *
- * // Check if the current page breakpoint is equal to 'md'
- * breakpointCondition.only('md');
- *
- * // Check if the current page breakpoint is not equal to 'xl'
- * breakpointCondition.not('xl');
- *
- * // Check if the current page breakpoint is between 'sm' and 'lg'
- * breakpointCondition.between('sm', 'lg');
- *
- */
-export function getBreakpoint() {
-	return breakpoint();
+function addBreakPointEvent() {
+	const compact = window.matchMedia('(min-width: 0px) and (max-width: 599px)');
+	compact.addEventListener('change', (event) => {
+		// eslint-disable-next-line no-undef
+		if (event.matches) breakpoint = 'compact';
+	});
+
+	const medium = window.matchMedia('(min-width: 600px) and (max-width: 839px)');
+	medium.addEventListener('change', (event) => {
+		// eslint-disable-next-line no-undef
+		if (event.matches) breakpoint = 'medium';
+	});
+
+	const expanded = window.matchMedia('(min-width: 840px) and (max-width: 1199px)');
+	expanded.addEventListener('change', (event) => {
+		// eslint-disable-next-line no-undef
+		if (event.matches) breakpoint = 'expanded';
+	});
+
+	const large = window.matchMedia('(min-width: 1200px) and (max-width: 1599px)');
+	large.addEventListener('change', (event) => {
+		// eslint-disable-next-line no-undef
+		if (event.matches) breakpoint = 'large';
+	});
+
+	const extraLarge = window.matchMedia('(min-width: 1600px)');
+	extraLarge.addEventListener('change', (event) => {
+		// eslint-disable-next-line no-undef
+		if (event.matches) breakpoint = 'extraLarge';
+	});
 }
 
 /**
  *
- * 디자인 패턴에 따른 화면 분기점 조건과 일치하는지 확인
+ * 디자인 패턴에 따른 화면 분기점에 따라 분기점 이름 전달
  *
- * @returns {breakpointCondition}
+ * @returns {void}
  *
  * @example
- * const body = document.body
- * const breakpointCondition = getElementBreakpoint(body);
+ * let breakpoint = $state();
  *
- * type Breakpoint: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl'
- *
- * // Check if the current page breakpoint is greater than 'sm'
- * breakpointCondition.up('sm');
- *
- * // Check if the current page breakpoint is less than 'lg'
- * breakpointCondition.down('lg');
- *
- * // Check if the current page breakpoint is equal to 'md'
- * breakpointCondition.only('md');
- *
- * // Check if the current page breakpoint is not equal to 'xl'
- * breakpointCondition.not('xl');
- *
- * // Check if the current page breakpoint is between 'sm' and 'lg'
- * breakpointCondition.between('sm', 'lg');
+ * onMount(() => {
+ *	 breakpoint = getBreakPoint();
+ * });
  *
  */
-export function getElementBreakpoint(element) {
-	return breakpoint(element);
+export function getBreakPoint() {
+	// Add EventListener
+	addBreakPointEvent();
+
+	// Excecute Once
+	if (window.matchMedia('(min-width: 0px) and (max-width: 599px)').matches) return 'compact';
+	if (window.matchMedia('(min-width: 600px) and (max-width: 839px)').matches) return 'medium';
+	if (window.matchMedia('(min-width: 840px) and (max-width: 1199px)').matches) return 'expanded';
+	if (window.matchMedia('(min-width: 1200px) and (max-width: 1599px)').matches) return 'large';
+	return 'extraLarge';
 }
