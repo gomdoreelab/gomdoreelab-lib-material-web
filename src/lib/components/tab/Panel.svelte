@@ -1,10 +1,10 @@
 <script>
 	import 'mdui/mdui.css';
-	import 'mdui/components/slider.js';
+	import 'mdui/components/tab-panel.js';
 
 	let { children, ...props } = $props();
 </script>
 
-<svelte:element this={'mdui-slider'} {...props}>
+<svelte:element this={'mdui-tab-panel'} {...props}>
 	{@render children?.()}
 </svelte:element>

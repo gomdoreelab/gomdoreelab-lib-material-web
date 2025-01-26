@@ -1,24 +1,10 @@
 <script>
-	import '@material/web/divider/divider.js';
+	import 'mdui/mdui.css';
+	import 'mdui/components/divider.js';
 
-	let divider;
-	let {
-		role = 'separator',
-		color = '',
-		thickness = '1px',
-		inset = false,
-		insetStart = false,
-		insetEnd = false
-	} = $props();
-
-	$effect(() => {
-		if (color) {
-			divider.style.setProperty('--md-divider-color', color);
-		}
-		if (thickness) {
-			divider.style.setProperty('--md-divider-thickness', thickness);
-		}
-	});
+	let { children, ...props } = $props();
 </script>
 
-<md-divider bind:this={divider} {role} {inset} {insetStart} {insetEnd}></md-divider>
+<svelte:element this={'mdui-divider'} {...props}>
+	{@render children?.()}
+</svelte:element>

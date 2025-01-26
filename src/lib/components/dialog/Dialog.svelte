@@ -1,57 +1,15 @@
 <script>
-	import '@material/web/dialog/dialog.js';
+	import 'mdui/mdui.css';
+	import 'mdui/components/dialog.js';
 
-	let dialog;
-	let {
-		containerColor = '',
-		headlineColor = '',
-		headlineFont = '',
-		supportingTextColor = '',
-		supportingTextFont = '',
-		quick = false,
-		returnValue = '',
-		type,
-		noFocusTrap = false,
-		open,
-		getOpenAnimation,
-		getCloseAnimation,
-		slotHeadline,
-		slotContent,
-		slotActions,
-		oncancel
-	} = $props();
-
-	$effect(() => {
-		if (containerColor) {
-			dialog.style.setProperty('--md-dialog-container-color', containerColor);
-		}
-		if (headlineColor) {
-			dialog.style.setProperty('--md-dialog-headline-color', headlineColor);
-		}
-		if (headlineFont) {
-			dialog.style.setProperty('--md-dialog-headline-font', headlineFont);
-		}
-		if (supportingTextColor) {
-			dialog.style.setProperty('--md-dialog-supporting-text-color', supportingTextColor);
-		}
-		if (supportingTextFont) {
-			dialog.style.setProperty('--md-dialog-supporting-text-font', supportingTextFont);
-		}
-	});
+	let { children, _header, _icon, _headline, _description, _action, ...props } = $props();
 </script>
 
-<md-dialog
-	bind:this={dialog}
-	{quick}
-	{returnValue}
-	{type}
-	{noFocusTrap}
-	{open}
-	{getOpenAnimation}
-	{getCloseAnimation}
-	{oncancel}
->
-	{@render slotHeadline?.()}
-	{@render slotContent?.()}
-	{@render slotActions?.()}
-</md-dialog>
+<svelte:element this={'mdui-dialog'} {...props}>
+	{@render children?.()}
+	{@render _header?.()}
+	{@render _icon?.()}
+	{@render _headline?.()}
+	{@render _description?.()}
+	{@render _action?.()}
+</svelte:element>

@@ -1,6 +1,6 @@
 {
 	"name": "gomdoreelab-lib-material-web",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"license": "MIT",
 	"scripts": {
 		"dev": "vite dev",
@@ -53,7 +53,8 @@
 		"vite": "^5.4.11"
 	},
 	"dependencies": {
-		"@material/web": "^2.2.0",
-		"gomdoreelab-lib-grid-web": "^0.1.2"
+		"@mdui/icons": "^1.0.2",
+		"gomdoreelab-lib-grid-web": "^0.1.2",
+		"mdui": "^2.1.3"
 	}
 }

@@ -1,47 +1,12 @@
 <script>
-	import '@material/web/radio/radio.js';
+	import 'mdui/mdui.css';
+	import 'mdui/components/radio.js';
 
-	let radio;
-	let {
-		// Accessibility
-		ariaLabel = '',
-		// Tokens
-		iconColor = '',
-		selectedIconColor = '',
-		iconSize = '20px',
-		// Properties
-		required = false,
-		value = 'on',
-		checked,
-		disabled,
-		name,
-		// Events
-		oninput,
-		onchange
-	} = $props();
-
-	$effect(() => {
-		if (iconColor) {
-			radio.style.setProperty('--md-radio-icon-color', iconColor);
-		}
-		if (selectedIconColor) {
-			radio.style.setProperty('--md-radio-selected-icon-color', selectedIconColor);
-		}
-		if (iconSize) {
-			radio.style.setProperty('--md-radio-icon-size', iconSize);
-		}
-	});
+	let { children, _uncheckedIcon, _checkedIcon, ...props } = $props();
 </script>
 
-<md-radio
-	bind:this={radio}
-	aria-label={ariaLabel}
-	{required}
-	{value}
-	{checked}
-	{disabled}
-	{name}
-	{oninput}
-	{onchange}
->
-</md-radio>
+<svelte:element this={'mdui-radio'} {...props}>
+	{@render children?.()}
+	{@render _uncheckedIcon?.()}
+	{@render _checkedIcon?.()}
+</svelte:element>

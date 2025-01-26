@@ -1,50 +1,17 @@
 <script>
-	import '@material/web/menu/menu-item.js';
+	import 'mdui/mdui.css';
+	import 'mdui/components/menu-item.js';
 
-	let item;
-	let {
-		// Tokens
-		containerColor = '',
-		selectedContainerColor = '',
-		// Properties
-		disabled = false,
-		type = 'menuitem',
-		href = '',
-		target = '',
-		keepOpen = false,
-		selected = false,
-		typeaheadText,
-		// Slots
-		slot,
-		slotHeadline,
-		slotEnd
-	} = $props();
-
-	$effect(() => {
-		// Tokens
-		if (containerColor) {
-			item.style.setProperty('--md-menu-item-container-color', containerColor);
-		}
-		if (selectedContainerColor) {
-			item.style.setProperty('--md-menu-item-selected-container-color', selectedContainerColor);
-		}
-		// Slots
-		if (slot) {
-			item.setAttribute('slot', slot);
-		}
-	});
+	let { children, _icon, _endIcon, _endText, _selectedIcon, _submenu, _custom, ...props } =
+		$props();
 </script>
 
-<md-menu-item
-	bind:this={item}
-	{disabled}
-	{type}
-	{href}
-	{target}
-	{keepOpen}
-	{selected}
-	{typeaheadText}
->
-	{@render slotHeadline?.()}
-	{@render slotEnd?.()}
-</md-menu-item>
+<svelte:element this={'mdui-menu-item'} {...props}>
+	{@render children?.()}
+	{@render _icon?.()}
+	{@render _endIcon?.()}
+	{@render _endText?.()}
+	{@render _selectedIcon?.()}
+	{@render _submenu?.()}
+	{@render _custom?.()}
+</svelte:element>

@@ -1,10 +1,9 @@
 <script>
 	import 'mdui/mdui.css';
-	import 'mdui/components/slider.js';
 
 	let { children, ...props } = $props();
 </script>
 
-<svelte:element this={'mdui-slider'} {...props}>
+<table class="mdui-table" {...props}>
 	{@render children?.()}
-</svelte:element>
+</table>

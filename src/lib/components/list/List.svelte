@@ -1,26 +1,10 @@
 <script>
-	import '@material/web/list/list.js';
+	import 'mdui/mdui.css';
+	import 'mdui/components/list.js';
 
-	let list;
-	let {
-		// Tokens
-		containerColor = '',
-		// Custom Tokens
-		maxWidth = '',
-		// Slots
-		slotItems
-	} = $props();
-
-	$effect(() => {
-		if (containerColor) {
-			list.style.setProperty('--md-list-container-color', containerColor);
-		}
-		if (maxWidth) {
-			list.style.setProperty('max-width', maxWidth);
-		}
-	});
+	let { children, ...props } = $props();
 </script>
 
-<md-list bind:this={list}>
-	{@render slotItems?.()}
-</md-list>
+<svelte:element this={'mdui-list'} {...props}>
+	{@render children?.()}
+</svelte:element>

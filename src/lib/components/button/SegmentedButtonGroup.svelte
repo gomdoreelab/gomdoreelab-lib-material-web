@@ -1,10 +1,10 @@
 <script>
 	import 'mdui/mdui.css';
-	import 'mdui/components/slider.js';
+	import 'mdui/components/segmented-button-group.js';
 
 	let { children, ...props } = $props();
 </script>
 
-<svelte:element this={'mdui-slider'} {...props}>
+<svelte:element this={'mdui-segmented-button-group'} {...props}>
 	{@render children?.()}
 </svelte:element>

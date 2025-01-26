@@ -1,30 +1,13 @@
 <script>
-	import '@material/web/tabs/tabs.js';
+	import 'mdui/mdui.css';
+	import 'mdui/components/tab.js';
 
-	let tabs;
-	let {
-		// Accessibility
-		ariaLabel = '',
-		// Properties
-		autoActivate = false,
-		activeTabIndex,
-		activeTab,
-		// Events
-		onchange,
-		// Slots
-		slotPrimaryTab,
-		slotSecondaryTab
-	} = $props();
+	let { children, _icon, _badge, _custom, ...props } = $props();
 </script>
 
-<md-tabs
-	bind:this={tabs}
-	aria-label={ariaLabel}
-	{autoActivate}
-	{activeTabIndex}
-	{activeTab}
-	{onchange}
->
-	{@render slotPrimaryTab?.()}
-	{@render slotSecondaryTab?.()}
-</md-tabs>
+<svelte:element this={'mdui-tab'} {...props}>
+	{@render children?.()}
+	{@render _icon?.()}
+	{@render _badge?.()}
+	{@render _custom?.()}
+</svelte:element>

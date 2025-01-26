@@ -1,10 +1,10 @@
 <script>
 	import 'mdui/mdui.css';
-	import 'mdui/components/slider.js';
+	import 'mdui/components/range-slider.js';
 
 	let { children, ...props } = $props();
 </script>
 
-<svelte:element this={'mdui-slider'} {...props}>
+<svelte:element this={'mdui-range-slider'} {...props}>
 	{@render children?.()}
 </svelte:element>

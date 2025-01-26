@@ -1,3 +1,7 @@
 ### gomdoreelab-lib-material-web
 
-A meterial design 3 library.
+A Material Design 3 component library implemented in Svelte.
+
+### Sources
+
+- [mdui](https://github.com/zdhxiong/mdui)
