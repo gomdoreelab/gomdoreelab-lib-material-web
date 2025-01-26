@@ -194,43 +194,58 @@ export function getResizeObserver(element, callback) {
 	return observeResize(element, callback);
 }
 
-function addBreakPointEvent() {
+/**
+ *
+ * 디자인 패턴에 따른 화면 분기점에 따라 분기점 이름 전달
+ *
+ * @returns {void}
+ *
+ * @example
+ * const callback = {
+ *   compact: (event) => {
+ *     if (event.matches) breakpoint = 'compact';
+ *   },
+ *   medium: (event) => {
+ *     if (event.matches) breakpoint = 'medium';
+ *   },
+ *   expanded: (event) => {
+ *     if (event.matches) breakpoint = 'expanded';
+ *   },
+ *   large: (event) => {
+ *     if (event.matches) breakpoint = 'large';
+ *   },
+ *   extraLarge: (event) => {
+ *     if (event.matches) breakpoint = 'extraLarge';
+ *   },
+ * }
+ *
+ * onMount(() => {
+ *	 addBreakPointEvent(callback)
+ * });
+ *
+ */
+export function addBreakPointEvent(callback) {
 	const compact = window.matchMedia('(min-width: 0px) and (max-width: 599px)');
-	compact.addEventListener('change', (event) => {
-		// eslint-disable-next-line no-undef
-		if (event.matches) breakpoint = 'compact';
-	});
+	compact.addEventListener('change', callback.compact);
 
 	const medium = window.matchMedia('(min-width: 600px) and (max-width: 839px)');
-	medium.addEventListener('change', (event) => {
-		// eslint-disable-next-line no-undef
-		if (event.matches) breakpoint = 'medium';
-	});
+	medium.addEventListener('change', callback.medium);
 
 	const expanded = window.matchMedia('(min-width: 840px) and (max-width: 1199px)');
-	expanded.addEventListener('change', (event) => {
-		// eslint-disable-next-line no-undef
-		if (event.matches) breakpoint = 'expanded';
-	});
+	expanded.addEventListener('change', callback.expanded);
 
 	const large = window.matchMedia('(min-width: 1200px) and (max-width: 1599px)');
-	large.addEventListener('change', (event) => {
-		// eslint-disable-next-line no-undef
-		if (event.matches) breakpoint = 'large';
-	});
+	large.addEventListener('change', callback.large);
 
 	const extraLarge = window.matchMedia('(min-width: 1600px)');
-	extraLarge.addEventListener('change', (event) => {
-		// eslint-disable-next-line no-undef
-		if (event.matches) breakpoint = 'extraLarge';
-	});
+	extraLarge.addEventListener('change', callback.extraLarge);
 }
 
 /**
  *
  * 디자인 패턴에 따른 화면 분기점에 따라 분기점 이름 전달
  *
- * @returns {void}
+ * @returns {'compact' | 'medium' | 'expanded' | 'large' | 'extraLarge'}
  *
  * @example
  * let breakpoint = $state();
@@ -241,9 +256,6 @@ function addBreakPointEvent() {
  *
  */
 export function getBreakPoint() {
-	// Add EventListener
-	addBreakPointEvent();
-
 	// Excecute Once
 	if (window.matchMedia('(min-width: 0px) and (max-width: 599px)').matches) return 'compact';
 	if (window.matchMedia('(min-width: 600px) and (max-width: 839px)').matches) return 'medium';
