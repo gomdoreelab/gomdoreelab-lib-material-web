@@ -6,6 +6,6 @@
 </script>
 
 <svelte:element this={'mdui-dropdown'} {...props}>
-	{@render children?.()}
 	{@render _trigger?.()}
+	{@render children?.()}
 </svelte:element>
