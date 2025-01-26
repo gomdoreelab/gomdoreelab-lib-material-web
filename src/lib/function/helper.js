@@ -3,6 +3,7 @@ import { setTheme } from 'mdui/functions/setTheme.js';
 import { getColorFromImage } from 'mdui/functions/getColorFromImage.js';
 import { setColorScheme } from 'mdui/functions/setColorScheme.js';
 import { removeColorScheme } from 'mdui/functions/removeColorScheme.js';
+import { observeResize } from 'mdui/functions/observeResize.js';
 import { breakpoint } from 'mdui/functions/breakpoint.js';
 
 /**
@@ -170,6 +171,28 @@ export function removeColorSchemeHTML() {
  */
 export function removeColorSchemeElements(element) {
 	removeColorScheme(element);
+}
+
+/**
+ *
+ * 특정 요소 크기 모니터링 및 콜백 함수 실행
+ * @param {string | HTMLElement | JQ<HTMLElement>} element
+ *
+ * @returns {ObserveResize}
+ *
+ * @example
+ * const body = document.body
+ * const observer = getResizeObserver(body, function(entry, observer) {
+ *   // At this point, document.body's size has changed. You can get the new size from entry.
+ *   console.log(entry);
+ *
+ *   // Call this method to stop observing
+ *   observer.unobserve();
+ * })
+ *
+ */
+export function getResizeObserver(element, callback) {
+	return observeResize(element, callback);
 }
 
 /**
