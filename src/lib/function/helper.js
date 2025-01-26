@@ -225,3 +225,35 @@ export function getResizeObserver(element, callback) {
 export function getBreakpoint() {
 	return breakpoint();
 }
+
+/**
+ *
+ * 디자인 패턴에 따른 화면 분기점 조건과 일치하는지 확인
+ *
+ * @returns {breakpointCondition}
+ *
+ * @example
+ * const body = document.body
+ * const breakpointCondition = getElementBreakpoint(body);
+ *
+ * type Breakpoint: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl'
+ *
+ * // Check if the current page breakpoint is greater than 'sm'
+ * breakpointCondition.up('sm');
+ *
+ * // Check if the current page breakpoint is less than 'lg'
+ * breakpointCondition.down('lg');
+ *
+ * // Check if the current page breakpoint is equal to 'md'
+ * breakpointCondition.only('md');
+ *
+ * // Check if the current page breakpoint is not equal to 'xl'
+ * breakpointCondition.not('xl');
+ *
+ * // Check if the current page breakpoint is between 'sm' and 'lg'
+ * breakpointCondition.between('sm', 'lg');
+ *
+ */
+export function getElementBreakpoint(element) {
+	return breakpoint(element);
+}
