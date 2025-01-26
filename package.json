@@ -54,7 +54,6 @@
 	},
 	"dependencies": {
 		"@mdui/icons": "^1.0.2",
-		"gomdoreelab-lib-grid-web": "^0.1.2",
 		"mdui": "^2.1.3"
 	}
 }
