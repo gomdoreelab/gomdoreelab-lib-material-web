@@ -5,6 +5,6 @@
 	let { children, ...props } = $props();
 </script>
 
-<svelte:element this={'mdui-navigation-bar'} {...props}>
+<svelte:element this={'mdui-navigation-bar'} {...props} style="width: 100vw;">
 	{@render children?.()}
 </svelte:element>
