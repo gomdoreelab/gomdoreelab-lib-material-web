@@ -43,6 +43,11 @@ export { default as Fab } from './components/fab/Fab.svelte';
 // Icon
 export { default as Icon } from './components/icon/Icon.svelte';
 
+// Layout
+export { default as Layout } from './components/layout/Layout.svelte';
+export { default as LayoutItem } from './components/layout/Item.svelte';
+export { default as LayoutMain } from './components/layout/Main.svelte';
+
 // List
 export { default as List } from './components/list/List.svelte';
 export { default as ListItem } from './components/list/Item.svelte';
