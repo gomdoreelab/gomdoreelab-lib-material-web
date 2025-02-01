@@ -4,6 +4,8 @@ import { getColorFromImage } from 'mdui/functions/getColorFromImage.js';
 import { setColorScheme } from 'mdui/functions/setColorScheme.js';
 import { removeColorScheme } from 'mdui/functions/removeColorScheme.js';
 import { observeResize } from 'mdui/functions/observeResize.js';
+import { SchemeTonalSpot, Hct, argbFromHex } from '@material/material-color-utilities';
+import { rgbFromArgb } from './internal.js';
 
 /**
  *
@@ -115,7 +117,233 @@ export async function getColorFromImageSource(source) {
  *
  */
 export function setColorSchemeHTML(color) {
-	setColorScheme(color);
+	const light = new SchemeTonalSpot(Hct.fromInt(argbFromHex(color)), false, 0.0);
+	const dark = new SchemeTonalSpot(Hct.fromInt(argbFromHex(color)), true, 0.0);
+	const root = document.querySelector(':root');
+
+	[light, dark].forEach((theme) => {
+		// Primary
+		root.style.setProperty(
+			`--mdui-color-primary-${theme.isDark ? 'dark' : 'light'}`,
+			rgbFromArgb(theme.primary)
+		);
+
+		// Primary container
+		root.style.setProperty(
+			`--mdui-color-primary-container-${theme.isDark ? 'dark' : 'light'}`,
+			rgbFromArgb(theme.primaryContainer)
+		);
+
+		// On primary
+		root.style.setProperty(
+			`--mdui-color-on-primary-${theme.isDark ? 'dark' : 'light'}`,
+			rgbFromArgb(theme.onPrimary)
+		);
+
+		// On primary container
+		root.style.setProperty(
+			`--mdui-color-on-primary-container-${theme.isDark ? 'dark' : 'light'}`,
+			rgbFromArgb(theme.onPrimaryContainer)
+		);
+
+		// Inverse primary
+		root.style.setProperty(
+			`--mdui-color-inverse-primary-${theme.isDark ? 'dark' : 'light'}`,
+			rgbFromArgb(theme.inversePrimary)
+		);
+
+		// Secondary
+		root.style.setProperty(
+			`--mdui-color-secondary-${theme.isDark ? 'dark' : 'light'}`,
+			rgbFromArgb(theme.secondary)
+		);
+
+		// Secondary container
+		root.style.setProperty(
+			`--mdui-color-secondary-container-${theme.isDark ? 'dark' : 'light'}`,
+			rgbFromArgb(theme.secondaryContainer)
+		);
+
+		// On secondary
+		root.style.setProperty(
+			`--mdui-color-on-secondary-${theme.isDark ? 'dark' : 'light'}`,
+			rgbFromArgb(theme.onSecondary)
+		);
+
+		// On secondary container
+		root.style.setProperty(
+			`--mdui-color-on-secondary-container-${theme.isDark ? 'dark' : 'light'}`,
+			rgbFromArgb(theme.onSecondaryContainer)
+		);
+
+		// Tertiary
+		root.style.setProperty(
+			`--mdui-color-tertiary-${theme.isDark ? 'dark' : 'light'}`,
+			rgbFromArgb(theme.tertiary)
+		);
+
+		// Tertiary container
+		root.style.setProperty(
+			`--mdui-color-tertiary-container-${theme.isDark ? 'dark' : 'light'}`,
+			rgbFromArgb(theme.tertiaryContainer)
+		);
+
+		// On tertiary
+		root.style.setProperty(
+			`--mdui-color-on-tertiary-${theme.isDark ? 'dark' : 'light'}`,
+			rgbFromArgb(theme.onTertiary)
+		);
+
+		// On tertiary container
+		root.style.setProperty(
+			`--mdui-color-on-tertiary-container-${theme.isDark ? 'dark' : 'light'}`,
+			rgbFromArgb(theme.onTertiaryContainer)
+		);
+
+		// Surface
+		root.style.setProperty(
+			`--mdui-color-surface-${theme.isDark ? 'dark' : 'light'}`,
+			rgbFromArgb(theme.surface)
+		);
+
+		// Surface dim
+		root.style.setProperty(
+			`--mdui-color-surface-dim-${theme.isDark ? 'dark' : 'light'}`,
+			rgbFromArgb(theme.surfaceDim)
+		);
+
+		// Surface bright
+		root.style.setProperty(
+			`--mdui-color-surface-bright-${theme.isDark ? 'dark' : 'light'}`,
+			rgbFromArgb(theme.surfaceBright)
+		);
+
+		// Surface container lowest
+		root.style.setProperty(
+			`--mdui-color-surface-container-lowest-${theme.isDark ? 'dark' : 'light'}`,
+			rgbFromArgb(theme.surfaceContainerLowest)
+		);
+
+		// Surface container low
+		root.style.setProperty(
+			`--mdui-color-surface-container-low-${theme.isDark ? 'dark' : 'light'}`,
+			rgbFromArgb(theme.surfaceContainerLow)
+		);
+
+		// Surface container
+		root.style.setProperty(
+			`--mdui-color-surface-container-${theme.isDark ? 'dark' : 'light'}`,
+			rgbFromArgb(theme.surfaceContainer)
+		);
+
+		// Surface container high
+		root.style.setProperty(
+			`--mdui-color-surface-container-high-${theme.isDark ? 'dark' : 'light'}`,
+			rgbFromArgb(theme.surfaceContainerHigh)
+		);
+
+		// Surface container highest
+		root.style.setProperty(
+			`--mdui-color-surface-container-highest-${theme.isDark ? 'dark' : 'light'}`,
+			rgbFromArgb(theme.surfaceContainerHighest)
+		);
+
+		// Surface variant
+		root.style.setProperty(
+			`--mdui-color-surface-variant-${theme.isDark ? 'dark' : 'light'}`,
+			rgbFromArgb(theme.surfaceVariant)
+		);
+
+		// On surface
+		root.style.setProperty(
+			`--mdui-color-on-surface-${theme.isDark ? 'dark' : 'light'}`,
+			rgbFromArgb(theme.onSurface)
+		);
+
+		// On surface variant
+		root.style.setProperty(
+			`--mdui-color-on-surface-variant-${theme.isDark ? 'dark' : 'light'}`,
+			rgbFromArgb(theme.onSurfaceVariant)
+		);
+
+		// Inverse
+		root.style.setProperty(
+			`--mdui-color-inverse-surface-${theme.isDark ? 'dark' : 'light'}`,
+			rgbFromArgb(theme.inverseSurface)
+		);
+
+		// Inverse on surface
+		root.style.setProperty(
+			`--mdui-color-inverse-on-surface-${theme.isDark ? 'dark' : 'light'}`,
+			rgbFromArgb(theme.inverseOnSurface)
+		);
+
+		// Background
+		root.style.setProperty(
+			`--mdui-color-background-${theme.isDark ? 'dark' : 'light'}`,
+			rgbFromArgb(theme.background)
+		);
+
+		// On background
+		root.style.setProperty(
+			`--mdui-color-on-background-${theme.isDark ? 'dark' : 'light'}`,
+			rgbFromArgb(theme.onBackground)
+		);
+
+		// Error
+		root.style.setProperty(
+			`--mdui-color-error-${theme.isDark ? 'dark' : 'light'}`,
+			rgbFromArgb(theme.error)
+		);
+
+		// Error container
+		root.style.setProperty(
+			`--mdui-color-error-container-${theme.isDark ? 'dark' : 'light'}`,
+			rgbFromArgb(theme.errorContainer)
+		);
+
+		// On error
+		root.style.setProperty(
+			`--mdui-color-on-error-${theme.isDark ? 'dark' : 'light'}`,
+			rgbFromArgb(theme.onError)
+		);
+
+		// On error container
+		root.style.setProperty(
+			`--mdui-color-on-error-container-${theme.isDark ? 'dark' : 'light'}`,
+			rgbFromArgb(theme.onErrorContainer)
+		);
+
+		// Outline
+		root.style.setProperty(
+			`--mdui-color-outline-${theme.isDark ? 'dark' : 'light'}`,
+			rgbFromArgb(theme.outline)
+		);
+
+		// Outline variant
+		root.style.setProperty(
+			`--mdui-color-outline-variant-${theme.isDark ? 'dark' : 'light'}`,
+			rgbFromArgb(theme.outlineVariant)
+		);
+
+		// Shadow
+		root.style.setProperty(
+			`--mdui-color-shadow-${theme.isDark ? 'dark' : 'light'}`,
+			rgbFromArgb(theme.shadow)
+		);
+
+		// Surface tint
+		root.style.setProperty(
+			`--mdui-color-surface-tint-color-${theme.isDark ? 'dark' : 'light'}`,
+			rgbFromArgb(theme.surfaceTint)
+		);
+
+		// Scrim
+		root.style.setProperty(
+			`--mdui-color-scrim-${theme.isDark ? 'dark' : 'light'}`,
+			rgbFromArgb(theme.scrim)
+		);
+	});
 }
 
 /**
