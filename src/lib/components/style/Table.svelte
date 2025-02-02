@@ -4,6 +4,6 @@
 	let { children, ...props } = $props();
 </script>
 
-<table class="mdui-table" {...props}>
+<div class="mdui-table" {...props}>
 	{@render children?.()}
-</table>
+</div>
