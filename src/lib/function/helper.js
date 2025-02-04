@@ -106,7 +106,14 @@ export async function getColorFromImageSource(source) {
 /**
  *
  * 16진수(HEX) 색상으로 <html> 색상 변경
+ *
+ * contrast as 0.0 for default contrast,
+ * 0.5 for higher contrast,
+ * 1.0 for highest contrast, and
+ * -1.0 for reduced contrast.
+ *
  * @param {string | HTMLElement | JQ<HTMLElement>} color
+ * @param {number} contrast
  *
  * @returns {void}
  *
@@ -115,10 +122,16 @@ export async function getColorFromImageSource(source) {
  *
  * setColorSchemeHTML(color)
  *
+ * @example
+ * const color = '#0099ff'
+ * const contrast = 0.5
+ *
+ * setColorSchemeHTML(color, contrast)
+ *
  */
-export function setColorSchemeHTML(color) {
-	const light = new SchemeTonalSpot(Hct.fromInt(argbFromHex(color)), false, 0.0);
-	const dark = new SchemeTonalSpot(Hct.fromInt(argbFromHex(color)), true, 0.0);
+export function setColorSchemeHTML(color, contrast = 0.0) {
+	const light = new SchemeTonalSpot(Hct.fromInt(argbFromHex(color)), false, contrast);
+	const dark = new SchemeTonalSpot(Hct.fromInt(argbFromHex(color)), true, contrast);
 	const root = document.querySelector(':root');
 
 	[light, dark].forEach((theme) => {
