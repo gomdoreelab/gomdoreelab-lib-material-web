@@ -74,7 +74,6 @@ export { default as RadioGroup } from './components/radio/Group.svelte';
 
 // Select
 export { default as Select } from './components/select/Select.svelte';
-export { default as SelectItem } from './components/select/Item.svelte';
 
 // Slider
 export { default as SliderRange } from './components/slider/Range.svelte';
