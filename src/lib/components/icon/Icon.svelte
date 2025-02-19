@@ -2,10 +2,10 @@
 	import 'mdui/mdui.css';
 	import 'mdui/components/icon.js';
 
-	let { children, name, src, ...props } = $props();
+	let { children = undefined, ...props } = $props();
 </script>
 
-<svelte:element this={'mdui-icon'} {name} {src} {...props}>
+<svelte:element this={'mdui-icon'} {...props}>
 	{@render children?.()}
 </svelte:element>
 
