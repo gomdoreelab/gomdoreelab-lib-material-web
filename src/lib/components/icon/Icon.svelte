@@ -2,7 +2,7 @@
 	import 'mdui/mdui.css';
 	import 'mdui/components/icon.js';
 
-	/** @type {{ children: Snippet; }} */
+	/** @type {{ children: Snippet; props: *?; }} */
 
 	let { children, ...props } = $props();
 </script>
