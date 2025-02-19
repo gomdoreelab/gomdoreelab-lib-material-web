@@ -1,6 +1,6 @@
 {
 	"name": "gomdoreelab-lib-material-web",
-	"version": "0.2.21",
+	"version": "0.2.22",
 	"license": "MIT",
 	"scripts": {
 		"dev": "vite dev",

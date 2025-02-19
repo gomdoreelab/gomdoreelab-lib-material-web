@@ -2,7 +2,7 @@
 	import 'mdui/mdui.css';
 	import 'mdui/components/range-slider.js';
 
-	let { children, ...props } = $props();
+	let { children = undefined, ...props } = $props();
 </script>
 
 <svelte:element this={'mdui-range-slider'} {...props}>
