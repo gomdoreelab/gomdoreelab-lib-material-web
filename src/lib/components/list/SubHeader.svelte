@@ -11,8 +11,8 @@
 
 <style>
 	mdui-list-subheader {
-		font-size: var(--mdui-typescale-label-medium-size);
-		letter-spacing: var(--mdui-typescale-label-medium-tracking);
-		font-weight: var(--mdui-typescale-label-medium-weight);
+		font-size: var(--mdui-typescale-label-large-size);
+		letter-spacing: var(--mdui-typescale-label-large-tracking);
+		font-weight: var(--mdui-typescale-label-large-weight);
 	}
 </style>
