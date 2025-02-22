@@ -2,7 +2,7 @@
 	import 'mdui/mdui.css';
 	import 'mdui/components/collapse-item.js';
 
-	let { children, ...props } = $props();
+	let { children = undefined, ...props } = $props();
 </script>
 
 <svelte:element this={'mdui-collapse-item'} {...props}>
