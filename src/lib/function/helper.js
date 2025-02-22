@@ -363,7 +363,9 @@ export function setColorSchemeHTML(color, contrast = 0.0) {
  *
  * 16진수(HEX) 색상으로 타겟 색상 변경
  * @param {string | HTMLElement | JQ<HTMLElement>} color
- * @param {{target: string, customColors?: CustomColor[]}} [options]
+ * @param {object} [options]
+ * @param {string} [options.target]
+ * @param {CustomColor[]} [options.CustomColors]
  *
  * @returns {void}
  *
