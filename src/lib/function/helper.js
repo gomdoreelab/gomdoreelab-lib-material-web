@@ -363,19 +363,20 @@ export function setColorSchemeHTML(color, contrast = 0.0) {
  *
  * 16진수(HEX) 색상으로 타겟 색상 변경
  * @param {string | HTMLElement | JQ<HTMLElement>} color
- * @param {CustomColor[]} options
+ * @param {{target: string, customColors?: CustomColor[]}} [options]
  *
  * @returns {void}
  *
  * @example
  * const color = '#0099ff'
+ * const target = '.target'
  * const option = {
  *  name: 'error'
  *  value: '#f82506'
  * }
  * const options = [option]
  *
- * setColorSchemeElements(color, options)
+ * setColorSchemeElements(color, {target, customColors: options})
  *
  */
 export function setColorSchemeElements(color, options) {
