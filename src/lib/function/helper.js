@@ -4,7 +4,13 @@ import { getColorFromImage } from 'mdui/functions/getColorFromImage.js';
 import { setColorScheme } from 'mdui/functions/setColorScheme.js';
 import { removeColorScheme } from 'mdui/functions/removeColorScheme.js';
 import { observeResize } from 'mdui/functions/observeResize.js';
-import { SchemeTonalSpot, Hct, argbFromHex } from '@material/material-color-utilities';
+import {
+	DynamicScheme,
+	SchemeTonalSpot,
+	Hct,
+	argbFromHex,
+	TonalPalette
+} from '@material/material-color-utilities';
 import { rgbFromArgb } from './internal.js';
 
 /**
@@ -129,12 +135,65 @@ export async function getColorFromImageSource(source) {
  * setColorSchemeHTML(color, contrast)
  *
  */
-export function setColorSchemeHTML(color, contrast = 0.0) {
-	const light = new SchemeTonalSpot(Hct.fromInt(argbFromHex(color)), false, contrast);
-	const dark = new SchemeTonalSpot(Hct.fromInt(argbFromHex(color)), true, contrast);
+export function setColorSchemeHTML(
+	color,
+	{
+		contrast = 0.0,
+		primary = null,
+		secondary = null,
+		tertiary = null,
+		neutral = null,
+		neutralVariant = null
+	}
+) {
+	const lightSource = new SchemeTonalSpot(Hct.fromInt(argbFromHex(color)), false, contrast);
+	const darkSource = new SchemeTonalSpot(Hct.fromInt(argbFromHex(color)), true, contrast);
 	const root = document.querySelector(':root');
 
-	[light, dark].forEach((theme) => {
+	const light = new DynamicScheme({
+		sourceColorArgb: argbFromHex(color),
+		variant: lightSource,
+		isDark: false,
+		contrastLevel: contrast,
+		primaryPalette: primary
+			? TonalPalette.fromInt(argbFromHex(primary))
+			: lightSource.primaryPalette,
+		secondaryPalette: secondary
+			? TonalPalette.fromInt(argbFromHex(secondary))
+			: lightSource.secondaryPalette,
+		tertiaryPalette: tertiary
+			? TonalPalette.fromInt(argbFromHex(tertiary))
+			: lightSource.tertiaryPalette,
+		neutralPalette: neutral
+			? TonalPalette.fromInt(argbFromHex(neutral))
+			: lightSource.neutralPalette,
+		neutralVariantPalette: neutralVariant
+			? TonalPalette.fromInt(argbFromHex(neutralVariant))
+			: lightSource.neutralVariantPalette
+	});
+	const dark = new DynamicScheme({
+		sourceColorArgb: argbFromHex(color),
+		variant: darkSource,
+		isDark: true,
+		contrastLevel: contrast,
+		primaryPalette: primary
+			? TonalPalette.fromInt(argbFromHex(primary))
+			: darkSource.primaryPalette,
+		secondaryPalette: secondary
+			? TonalPalette.fromInt(argbFromHex(secondary))
+			: darkSource.secondaryPalette,
+		tertiaryPalette: tertiary
+			? TonalPalette.fromInt(argbFromHex(tertiary))
+			: darkSource.tertiaryPalette,
+		neutralPalette: neutral
+			? TonalPalette.fromInt(argbFromHex(neutral))
+			: darkSource.neutralPalette,
+		neutralVariantPalette: neutralVariant
+			? TonalPalette.fromInt(argbFromHex(neutralVariant))
+			: darkSource.neutralVariantPalette
+	});
+
+	[(light, dark)].forEach((theme) => {
 		// Primary
 		root.style.setProperty(
 			`--mdui-color-primary-${theme.isDark ? 'dark' : 'light'}`,
