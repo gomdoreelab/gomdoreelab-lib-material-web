@@ -119,8 +119,13 @@ export async function getColorFromImageSource(source) {
  * -1.0 for reduced contrast.
  *
  * @param {string | HTMLElement | JQ<HTMLElement>} color
- * @param {number} contrast
- *
+ * @param {object} Options
+ * @param {number} [Options.contrast]
+ * @param {string} [Options.primary]
+ * @param {string} [Options.secondary]
+ * @param {string} [Options.tertiary]
+ * @param {string} [Options.neutral]
+ * @param {string} [Options.neutralVariant]
  * @returns {void}
  *
  * @example
@@ -132,7 +137,7 @@ export async function getColorFromImageSource(source) {
  * const color = '#0099ff'
  * const contrast = 0.5
  *
- * setColorSchemeHTML(color, contrast)
+ * setColorSchemeHTML(color, {contrast})
  *
  */
 export function setColorSchemeHTML(
@@ -148,11 +153,14 @@ export function setColorSchemeHTML(
 ) {
 	const lightSource = new SchemeTonalSpot(Hct.fromInt(argbFromHex(color)), false, contrast);
 	const darkSource = new SchemeTonalSpot(Hct.fromInt(argbFromHex(color)), true, contrast);
+
+	// console.log(new SchemeContent(Hct.fromInt(argbFromHex(color)), false, contrast));
+
 	const root = document.querySelector(':root');
 
 	const light = new DynamicScheme({
 		sourceColorArgb: argbFromHex(color),
-		variant: lightSource,
+		variant: 2,
 		isDark: false,
 		contrastLevel: contrast,
 		primaryPalette: primary
@@ -171,9 +179,10 @@ export function setColorSchemeHTML(
 			? TonalPalette.fromInt(argbFromHex(neutralVariant))
 			: lightSource.neutralVariantPalette
 	});
+
 	const dark = new DynamicScheme({
 		sourceColorArgb: argbFromHex(color),
-		variant: darkSource,
+		variant: 6,
 		isDark: true,
 		contrastLevel: contrast,
 		primaryPalette: primary
@@ -193,7 +202,7 @@ export function setColorSchemeHTML(
 			: darkSource.neutralVariantPalette
 	});
 
-	[(light, dark)].forEach((theme) => {
+	[light, dark].forEach((theme) => {
 		// Primary
 		root.style.setProperty(
 			`--mdui-color-primary-${theme.isDark ? 'dark' : 'light'}`,
